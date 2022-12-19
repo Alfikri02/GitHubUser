@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">GitHubUser</string>
+    <string name="name">Name</string>
+    <string name="appbar">Github</string>
+    <string name="username">Username</string>
+    <string name="location">Location</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="repositories">Repositories</string>
+    <string name="company">company</string>
+    <string name="favorite">Favorite</string>
+    <string name="toast_add_favorite">%s add to favorite</string>
+    <string name="toast_remove_favorite">%s remove from favorite</string>
+    <string name="data">Data</string>
+    <string name="find_user">Find Any User!!</string>
+</resources>
