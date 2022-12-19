@@ -10,6 +10,7 @@ import com.example.githubuser.core.data.source.remote.network.ApiService
 import com.example.githubuser.core.domain.repository.IUserRepository
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -36,6 +37,12 @@ val databaseModule = module {
 
 val networkModule = module {
     single {
+        val hostname = "api.github.com"
+        val certificatePinner = CertificatePinner.Builder()
+            .add(hostname, "sha256/uyPYgclc5Jt69vKu92vci6etcBDY8UNTyrHQZJpVoZY=")
+            .add(hostname, "sha256/e0IRz5Tio3GA1Xs4fUVWmH1xHDiH2dMbVtCBSkOIdqM=")
+            .add(hostname, "sha256/r/mIkG3eEpVdm+u/ko/cwxzOMo1bk4TyHIlByibiA5E=")
+            .build()
         OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val original = chain.request()
@@ -45,6 +52,7 @@ val networkModule = module {
                 chain.proceed(request)
             }.connectTimeout(1, TimeUnit.MINUTES)
             .readTimeout(1, TimeUnit.MINUTES)
+            .certificatePinner(certificatePinner)
             .build()
     }
 
