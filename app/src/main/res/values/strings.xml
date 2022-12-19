@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">GitHubUser</string>
     <string name="name">Name</string>
-    <string name="appbar">Github</string>
+    <string name="appbar">Github User</string>
     <string name="username">Username</string>
     <string name="location">Location</string>
     <string name="followers">Followers</string>
