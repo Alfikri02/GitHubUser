@@ -8,6 +8,8 @@ import com.example.githubuser.core.data.source.local.room.UserDatabase
 import com.example.githubuser.core.data.source.remote.RemoteDataSource
 import com.example.githubuser.core.data.source.remote.network.ApiService
 import com.example.githubuser.core.domain.repository.IUserRepository
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -23,10 +25,12 @@ val databaseModule = module {
         get<UserDatabase>().userDao()
     }
     single {
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("githubUser".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
             UserDatabase::class.java, "User.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration().openHelperFactory(factory).build()
     }
 }
 
