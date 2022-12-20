@@ -1,5 +1,6 @@
 package com.example.githubuser.core.ui
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +25,7 @@ class UserAdapter(
 
     override fun getItemCount(): Int = users.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setListUser(items: List<User>?) {
         users.apply {
             clear()
